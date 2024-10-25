@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+
+      {% endblock %}| Blog
+    </title>
+    {% load static %}
+    <link rel="icon" href="{% static 'main/images/image.png' %}" type="icon" />
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+  </head>
+
+  <body>
+    <div>
+      {% include 'main/nav.html' %}
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-3">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </div>
+    <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script src="{% static 'main/js/popper.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.js' %}"></script>
+  </body>
+</html>

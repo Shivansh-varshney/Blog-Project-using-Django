@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  Profile | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <h3 class="text-white my-5">Account Details</h3>
+  <div class="col-sm-6 text-white">
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ error }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <p>
+      <label for="username">Username:</label><small class="text-danger"></small><input type="text" name="username" value="{{ username }}" disabled class="form-control" maxlength="150" id="username" />
+    </p>
+
+    <form action="{% url 'profile' %}" method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<small class="text-danger">{{ field.errors|striptags }}</small>{{ field }}
+        </p>
+      {% endfor %}
+      <a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a>
+      <button type="submit" class="btn btn-success">Update</button>
+      <button type="reset" class="btn btn-info">Reset</button>
+    </form>
+    <a href="{% url 'changepassword' %}" class="btn btn-danger my-2">Change Password</a>
+  </div>
+{% endblock %}
