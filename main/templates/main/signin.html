@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  SignIn {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <h3 class="text-white my-5">SignIn</h3>
+  <div class="col-sm-6 text-white">
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ error }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'login_user' %}" method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<small class="text-danger">{{ field.errors|striptags }}</small>{{ field }}
+        </p>
+      {% endfor %}
+      <button type="submit" class="btn btn-success">Sign In</button>
+      <button type="reset" class="btn btn-info">Reset</button>
+    </form>
+  </div>
+{% endblock %}

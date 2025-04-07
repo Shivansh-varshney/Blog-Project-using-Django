@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="text-white navbar-brand" href="/">Mini Blog</a>
+    <button class="text-white navbar-toggler bg-info" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="text-white nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="text-white nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        {% if nav %}
+          <li class="nav-item">
+            <a class="text-white nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-white nav-link" href="{% url 'logout_user' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="text-white nav-link" href="{% url 'signup' %}">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-white nav-link" href="{% url 'login_user' %}">Login</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

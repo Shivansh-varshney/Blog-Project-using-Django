@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  Add Post {{ block.super }}
+{% endblock %}
+
+{% block content %}
+  <h3 class="text-white my-5">Add Post</h3>
+  <div class="col-sm-10 text-white">
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <div class="aler alert-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'editpost' id %}" method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>{{ field.label_tag }}</p>
+        <p>
+          {{ field }} <span>{{ field.errors|striptags }}</span>
+        </p>
+      {% endfor %}
+      <button type="submit" class="btn btn-success">Update</button>
+      <a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a>
+    </form>
+  </div>
+{% endblock %}

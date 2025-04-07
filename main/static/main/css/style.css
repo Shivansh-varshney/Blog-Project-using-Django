@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(75, 74, 74);
+    color: antiquewhite;
+}
+
+a {
+    text-decoration: none;
+    color: antiquewhite;
+}
+
+textarea, textarea:focus {
+    background-color: rgb(75, 74, 74);
+    color: antiquewhite;
+    resize: none; /* Prevent manual resizing */
+}
+
+button.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.title-container {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.flex-container {
+    display: flex;
+    
+}
+
+.flex-container a {
+    margin-right: 10px; /* Optional: Add some spacing between links */
+}
+
+.jumbo-color{
+    background-color: rgb(83, 81, 81);
+}
+
+.form-control{
+    background-color: rgb(177, 168, 168);
+}
